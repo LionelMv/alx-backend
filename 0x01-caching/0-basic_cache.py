@@ -9,17 +9,14 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 
 class BasicCache(BaseCaching):
-    """
-    Store an item in the cache associated with a given key.
-    """
+    """BasicCache class"""
     def put(self, key, item):
+        """Store an item in the cache associated with a given key."""
         if key and item:
             self.cache_data[key] = item
 
     def get(self, key):
-        """
-        Retrieve an item from the cache associated with a given key.
-        """
+        """Retrieve an item from the cache associated with a given key."""
         if key in self.cache_data:
             return self.cache_data[key]
         else:
