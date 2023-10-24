@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-This module defines a caching class, `FIFOCache`, that is derived
+This module defines a caching class, `LIFOCache`, that is derived
 from the `BaseCaching` class. It provides LIFO caching functionality
 for storing, retrieving and deleting key-value pairs.
 """
