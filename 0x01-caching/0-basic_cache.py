@@ -4,8 +4,7 @@ This module defines a basic caching class, `BasicCache`, that is derived
 from the `BaseCaching` class. It provides basic caching functionality
 for storing and retrieving key-value pairs.
 """
-
-BaseCaching = __import__('base_caching').BaseCaching
+from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
