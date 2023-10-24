@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 This module defines a basic caching class, `BasicCache`, that is derived
 from the `BaseCaching` class. It provides basic caching functionality
