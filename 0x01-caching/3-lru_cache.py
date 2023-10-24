@@ -17,7 +17,8 @@ class LRUCache(BaseCaching):
     def put(self, key, item):
         """
         Store an item in the cache associated with a given key.
-        Delete items using LRU if the number of dictionary items is bigger than MAX_ITEMS.
+        Delete items using LRU if the number of dictionary items
+        is bigger than MAX_ITEMS.
         """
         if key and item:
             self.cache_data[key] = item
