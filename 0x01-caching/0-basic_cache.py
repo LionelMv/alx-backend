@@ -10,6 +10,13 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 class BasicCache(BaseCaching):
     """Store an item in the cache associated with a given key."""
+    def __init__(self):
+        """
+        initialize class instance
+        """
+        super().__init__()
+        self.cache_data = {}
+
     def put(self, key, item):
         if key and item:
             self.cache_data[key] = item
