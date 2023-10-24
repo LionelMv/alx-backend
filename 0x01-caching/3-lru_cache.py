@@ -33,8 +33,14 @@ class LRUCache(BaseCaching):
                 print(f"DISCARD: {discard}")
 
     def get(self, key):
-        """Retrieve an item from the cache associated with a given key."""
-        if key in self.cache_data:
-            return self.cache_data[key]
-        else:
-            return None
+        """
+        Retrieve an item from the cache associated with a given key.
+        Assist in getting the LRU key in the list.
+        """
+        if key:
+            if key in self.cache_data:
+                self.cache_data_list.remove(key)
+                self.cache_data_list.append(key)
+                return self.cache_data[key]
+            else:
+                return None
