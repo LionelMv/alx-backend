@@ -8,6 +8,7 @@ from base_caching import BaseCaching
 
 
 class FIFOCache(BaseCaching):
+    """FIFOCache Class"""
     def __init__(self):
         "Initialize class instance"
         super().__init__()
