@@ -1,5 +1,5 @@
 # Pagination
-This project seeks to explain how pagination works in RES API.
+This project seeks to explain how pagination works in REST API.
 
 ## Objectives
 - How to paginate a dataset with simple page and page_size parameters.
