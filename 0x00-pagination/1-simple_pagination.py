@@ -6,7 +6,6 @@ It also includes a function for calculating the start and end indices
 of a page in a paginated dataset.
 """
 import csv
-import math
 from typing import List, Tuple
 
 
