@@ -27,6 +27,7 @@ class LRUCache(BaseCaching):
             else:
                 self.cache_data_list.remove(key)
                 self.cache_data_list.append(key)
+
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
                 discard = self.cache_data_list.pop(0)
                 self.cache_data.pop(discard)
