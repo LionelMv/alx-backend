@@ -20,11 +20,8 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    """_summary_
-
-    Returns:
-            _type_: _description_
-    """
+    """Returns the best language translation
+        from a user request."""
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
