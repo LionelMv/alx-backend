@@ -2,7 +2,7 @@ import { createClient } from "redis";
 
 const client = createClient();
 
-client.on("error", (err) => {
+client.on("error", (error) => {
   console.log("Redis client not connected to the server:", err.toString());
 });
 
@@ -15,8 +15,8 @@ const setNewSchool = (schoolName, value) => {
 };
 
 const displaySchoolValue = (schoolName) => {
-  client.GET(schoolName, (_err, reply) => {
-    console.log(reply);
+  client.GET(schoolName, (_err, result) => {
+    console.log(result);
   });
 };
 
