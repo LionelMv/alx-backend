@@ -17,8 +17,11 @@ const sendNotification = (phoneNumber, message, job, done) => {
     `Sending notification to ${phoneNumber}, with message: ${message}`
   );
 
-  job.progress(100, 100);
-  done();
+  setTimeout(() => {
+    // Track job progress at 100% and mark as done
+    job.progress(100, 100);
+    done();
+  }, 1000); // 1 second delay for demonstration
 };
 
 queue.process("push_notification_code_2", 2, (job, done) => {
