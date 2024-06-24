@@ -16,7 +16,7 @@ const createPushNotificationsJobs = (jobs, queue) => {
         console.log(`Notification job ${job.id} completed`);
       })
       .on("failed", (error) => {
-        console.log(`Notification job ${job.id} failed: ${error}`);
+        console.log(`Notification job ${job.id} failed: ${error.message}`);
       })
       .on("progress", (progress) => {
         console.log(`Notification job ${job.id} ${progress}% complete`);
