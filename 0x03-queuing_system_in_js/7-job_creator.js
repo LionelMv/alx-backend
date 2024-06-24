@@ -63,7 +63,10 @@ for (const jobInfo of jobs) {
       console.log(`Notification job ${job.id} failed:`, error);
     })
     .on("progress", (progress, _data) => {
-      console.log(`Notification job ${job.id} ${progress}% complete`);
+      // Only log progress up to 50%
+      if (progress <= 50){
+        console.log(`Notification job ${job.id} ${progress}% complete`);
+      }
     });
 
   job.save((err) => {
