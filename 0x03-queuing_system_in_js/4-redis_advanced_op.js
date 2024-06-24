@@ -1,5 +1,4 @@
 const redis = require("redis");
-const { promisify } = require("util");
 
 const client = redis.createClient();
 
@@ -11,6 +10,7 @@ client.on("error", (err) => {
   console.error("Redis client not connected to the server:", err);
 });
 
+// Define the hash object
 const holbertonSchools = {
   Portland: 50,
   Seattle: 80,
@@ -20,38 +20,37 @@ const holbertonSchools = {
   Paris: 2,
 };
 
+// Function to set hash values using callbacks
 const setHashValue = (key, field, value) => {
-  return new Promise((resolve, reject) => {
-    client.hset(key, field, value, (error, reply) => {
-      if (error) {
-        console.error(`Error setting value for ${field}:`, error);
-        reject(error);
-      } else {
-        console.log(`Value set for ${field}:`, reply);
-        resolve(reply);
-      }
-    });
+  client.hset(key, field, value, redis.print);
+};
+
+// Function to get all hash values using callbacks
+const displayHashValues = (key) => {
+  client.hgetall(key, (error, result) => {
+    if (error) {
+      console.error(`Error retrieving hash values for ${key}:`, error);
+    } else {
+      console.log(result);
+      Object.entries(result).forEach(([field, value]) => {
+        console.log(`${field}: ${value}`);
+      });
+    }
+    client.quit(); // Close the Redis client connection
   });
 };
 
-const getAllHashValues = promisify(client.hgetall).bind(client);
-
-(async () => {
-  try {
-    const promises = Object.entries(holbertonSchools).map(([key, value]) =>
-      setHashValue("HolbertonSchools", key, value)
-    );
-
-    await Promise.all(promises);
-
-    const result = await getAllHashValues("HolbertonSchools");
-    console.log("Hash values in Redis:", result);
-    Object.entries(result).forEach(([field, value]) => {
-      console.log(`${field}: ${value}`);
+// Clear existing data for the key before setting new values
+client.del("HolbertonSchools", (err) => {
+  if (err) {
+    console.error("Error deleting key:", err);
+  } else {
+    // After clearing the key, store the hash values in Redis
+    Object.entries(holbertonSchools).forEach(([field, value]) => {
+      setHashValue("HolbertonSchools", field, value);
     });
-  } catch (error) {
-    console.error("Error during Redis operations:", error);
-  } finally {
-    client.quit();
+
+    // Display the stored hash values from Redis
+    displayHashValues("HolbertonSchools");
   }
-})();
+});
